@@ -10,10 +10,10 @@ import SwiftUI
 @Observable
 class ExpenseViewModel {
     private(set) var expenses: [Expense] = [
-        Expense(title: "Chickfila", amount: 27.30, category: .food)
-        Expense(title: "Gas", amount: 50.00, category: .transportation)
-        Expense(title: "Ps5", amount: 500.00, category: .entertainment)
-        Expense(title: "MtDew", amount: 12.00, category: .food)
+        Expense(title: "Chickfila", amount: 27.30, category: .food),
+        Expense(title: "Gas", amount: 50.00, category: .transportation),
+        Expense(title: "Ps5", amount: 500.00, category: .entertainment),
+        Expense(title: "MtDew", amount: 12.00, category: .food),
         Expense(title: "Netflix", amount: 18.99, category: .entertainment)
     ]
     
@@ -49,6 +49,18 @@ class ExpenseViewModel {
     }
     
     func removeExpense(_ expense: Expense) {
-        for index in expenses.indices where 
+        for index in expenses.indices where  expenses[index].id == expense.id {
+            expenses.remove(at: index)
+            break
+        }
+    }
+    
+    func color(for category: ExpenseCategory) -> Color {
+        switch category {
+        case .food: .orange
+        case .entertainment: .purple
+        case .shopping: .pink
+        case .transportation: .blue
+        }
     }
 }
