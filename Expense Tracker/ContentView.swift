@@ -28,7 +28,7 @@ struct ContentView: View {
     
     private var backgroundGradient: some View {
         LinearGradient(colors: [.cyan, .green], startPoint: .topLeading, endPoint: .bottomTrailing)
-        opacity(0.8)
+            .opacity(0.8)
             .ignoresSafeArea()
     }
     
@@ -88,10 +88,41 @@ struct ContentView: View {
         }
     }
     
-    private var addButtons: some View {
-        
+    private func addButton(title: String, expenseTitle: String, amount: Double, category: ExpenseCategory) -> some View {
+        Button(title) {
+            viewModel.addExpense(title: expenseTitle, amount: amount, category: category)
+        }
+        .font(.subheadline)
+        .foregroundStyle(.white)
+        .padding(.horizontal, 12)
+        .padding(.vertical, 8)
+        .background(.indigo, in: Capsule())
     }
     
+    private var addButtons: some View {
+        HStack {
+            addButton(title: "🌭 Hotdog $2.50", expenseTitle: "Hotdog", amount: 4.50, category: .food);
+            addButton(title: "🎮 Gaming $70", expenseTitle: "Gaming", amount: 70.00, category: .entertainment)
+        }
+    }
+    
+    private func budgetButton(title: String, change: Double) -> some View {
+        Button(title) {
+            viewModel.adjustBudget(by: change)
+        }
+        .font(.subheadline)
+        .foregroundStyle(.teal)
+        .padding(.horizontal, 16)
+        .padding(.vertical, 8)
+        .background(.white, in: Capsule())
+    }
+    
+    private var budgetButtons: some View {
+        HStack {
+            budgetButton(title: "Budget -$50", change: -50)
+            budgetButton(title: "Budget +$50", change: 50)
+        }
+    }
     
     
 }
