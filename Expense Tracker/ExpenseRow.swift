@@ -28,7 +28,7 @@ struct ExpenseRow: View {
                 .fontWeight(.bold)
                 .foregroundStyle(color)
         }
-        padding(14)
+        .padding(14)
             .background(.white, in: RoundedRectangle(cornerRadius: 16))
             .shadow(color: .black.opacity(0.15), radius: 5, y: 3)
     }
@@ -52,6 +52,6 @@ struct ExpenseRow: View {
 }
 
 #Preview {
-    ExpenseRow(emoji: "🎬", title: "Movie Tickets", amount: 25, isBigTicket: false, color: .purple)
+    ExpenseRow(emoji: "🎬", title: "Movie Tickets", amount: 25.00, isBigTicket: true, color: .purple)
         .padding()
 }

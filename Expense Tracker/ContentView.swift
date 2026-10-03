@@ -77,7 +77,11 @@ struct ContentView: View {
             VStack(spacing: 10) {
                 ForEach(viewModel.expenses) {
                     expense in ExpenseRow(
-                        emoji: expense.category.emoji, title: expense.title, amount: expense.amount, isBigTicket: expense.isBigTicket, color: viewModel.color(for: expense.category)
+                        emoji: expense.category.emoji,
+                        title: expense.title,
+                        amount: expense.amount,
+                        isBigTicket: expense.isBigTicket,
+                        color: viewModel.color(for: expense.category)
                     )
                     .onTapGesture {
                         viewModel.removeExpense(expense)
